@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: #f7f7f7;
+    color: #333;
+}
+
+.container {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    color: #666;
+    margin-top: -10px;
+}
+
+.links a {
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #0077ff;
+}
+
+.projects {
+    list-style: none;
+    padding: 0;
+}
+
+.projects li {
+    margin: 10px 0;
+}
+
+.projects a {
+    color: #000;
+    text-decoration: none;
+}
+
+.projects a:hover {
+    text-decoration: underline;
+}
