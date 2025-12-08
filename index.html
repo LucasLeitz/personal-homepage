@@ -43,15 +43,23 @@
         const statusEl = document.getElementById("media-status");
 
         try {
-            // If the server is up and reachable, this resolves.
-            // If it's down, it will throw and go to the catch.
-            await fetch("https://media.lucasleitz.com/api/health", {
+            const response = await fetch("https://media.lucasleitz.com/health", {
                 method: "GET",
-                mode: "no-cors"
+                mode: "cors"
             });
 
-            statusEl.textContent = "✔️ Online";
-            statusEl.style.color = "green";
+            if (response.ok) {
+                const data = await response.json();
+                if (data.status === "ok") {
+                    statusEl.textContent = "✔️ Online";
+                    statusEl.style.color = "green";
+                    return;
+                }
+            }
+
+            // If response wasn't ok or status wasn't "ok"
+            statusEl.textContent = "❌ Offline";
+            statusEl.style.color = "red";
         } catch (err) {
             console.error("Media library health check failed:", err);
             statusEl.textContent = "❌ Offline";
