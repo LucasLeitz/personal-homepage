@@ -42,18 +42,17 @@
         const statusEl = document.getElementById("media-status");
 
         try {
-            const response = await fetch("https://media.lucasleitz.com/api/health", {
-                method: "GET"
+            // If the server is up and reachable, this resolves.
+            // If it's down, it will throw and go to the catch.
+            await fetch("https://media.lucasleitz.com/api/health", {
+                method: "GET",
+                mode: "no-cors"
             });
 
-            if (response.ok) {
-                statusEl.textContent = "✔️ Online";
-                statusEl.style.color = "green";
-            } else {
-                statusEl.textContent = "❌ Offline";
-                statusEl.style.color = "red";
-            }
+            statusEl.textContent = "✔️ Online";
+            statusEl.style.color = "green";
         } catch (err) {
+            console.error("Media library health check failed:", err);
             statusEl.textContent = "❌ Offline";
             statusEl.style.color = "red";
         }
@@ -61,6 +60,7 @@
 
     checkMediaLibrary();
 </script>
+
 
 
 </body>
